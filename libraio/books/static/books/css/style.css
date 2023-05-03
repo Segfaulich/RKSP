@@ -1,0 +1,282 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.4;
+  color: #333;
+  background-color: #1a1d22;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+header {
+  background-color: #1c1c1c;
+  color: #fff;
+  padding: 10px;
+}
+
+main {
+  flex-grow: 1;
+  padding: 20px;
+}
+
+.mainmenu {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.mainmenu li {
+  display: inline-block;
+  margin: 0 10px;
+}
+
+.mainmenu li.logo {
+  margin: 0 20px 0 0;
+}
+
+.mainmenu li.logo img {
+  height: 50px;
+  width: auto;
+}
+
+.mainmenu li.last {
+  margin-left: auto;
+}
+
+.mainmenu li a {
+  text-decoration: none;
+  color: #fff;
+}
+
+.mainmenu li a:hover{
+  color: #ddd;
+}
+
+.mainmenu li.last a {
+  text-decoration: none;
+  color: #fff;
+}
+
+.mainmenu li.last a:hover {
+  text-decoration: underline;
+}
+
+.content-block {
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  margin: 20px;
+  padding: 20px;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.pagination ul {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.pagination li {
+  margin: 0 5px;
+}
+
+.pagination li a,
+.pagination li.page-selected {
+  color: #1c1c1c;
+  display: block;
+  padding: 5px 10px;
+}
+
+.pagination li.page-selected {
+  background-color: #1c1c1c;
+  color: #fff;
+}
+
+footer {
+  flex-shrink: 1;
+  background-color: #1c1c1c;
+  color: #fff;
+  padding: 10px;
+  text-align: center;
+}
+
+hr {
+  border: none;
+  border-top: 1px solid #fff;
+  margin: 20px 0;
+}
+
+.action-menu {
+  background-color: #1c1c1c;
+  color: #fff;
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+}
+
+.action-menu form {
+  margin: 0;
+}
+
+.action-menu input[type="text"] {
+  background-color: #fff;
+  border: none;
+  border-radius: 3px;
+  font-size: 16px;
+  padding: 10px;
+  width: 300px;
+}
+
+.action-menu select {
+  appearance: none;
+  background-color: transparent;
+  border: none;
+  border-radius: 3px;
+  color: #fff;
+  cursor: pointer;
+  font-size: 16px;
+  padding: 10px;
+}
+
+.action-menu select:focus {
+  outline: none;
+}
+
+.action-menu select option {
+  background-color: #1a1d22;
+}
+
+.action-menu form input {
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  padding: 8px 12px;
+  font-size: 16px;
+  transition: border-color 0.3s ease-in-out;
+}
+
+.action-menu form input:focus {
+  border-color: #0077cc;
+  outline: none;
+}
+
+.book-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-gap: 20px;
+  list-style: none;
+  margin: 20px;
+  padding: 0;
+}
+
+.book-list li {
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  max-width: 100%;
+}
+
+.book-genre {
+  font-size: 17px;
+  font-weight: 600;
+}
+
+.book-date{
+  font-style: italic;
+}
+
+.book-img{
+  width: 280px;
+  height: 420px;
+}
+
+.book-description {
+  flex-grow: 1;
+}
+
+.book-link {
+  flex-shrink: 1;
+}
+
+.book-link a,
+.book-genre a {
+  text-decoration: none;
+  color: #1e355c;
+  font-weight: 600;
+}
+
+.book-link a:hover,
+.book-genre a:hover {
+  text-decoration: none;
+  color: #466096;
+}
+
+.detail {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: top;
+}
+
+.detail-img {
+  width: 330px;
+  height: 470px;
+}
+
+.detail-description {
+  align-items: left;
+  width: 60%;
+  word-wrap: break-word;
+}
+
+.form-input {
+  text-decoration: none;
+}
+
+textarea {
+  min-width: 200px;
+  min-height: 300px;
+  max-width: 700px;
+  max-height: 500px;
+}
+
+.form-label {
+  display: inline-block;
+  width: 120px;
+  text-align: right;
+  margin-right: 10px;
+}
+
+.form-error {
+  color: red;
+  font-size: 14px;
+  margin-top: 5px;
+}
+
+button[type="submit"] {
+  background-color: #4CAF50;
+  color: white;
+  padding: 7px 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.welcome-description {
+  width: 99%;
+  text-align: left;
+}

@@ -1,0 +1,41 @@
+{% extends 'books/base.html' %}
+
+{% block content %}
+<div class="action-menu">
+	<form method="GET" action="{% url 'search' %}">
+		<input type="text" name="query" placeholder="Введите запрос">
+		<!-- <button type="submit">Найти</button> -->
+	</form>          
+	  
+	<select onchange="if (this.value) window.location.href=this.value">
+		<option value="{% url 'list' %}" {% if genre_selected == 0 %}selected{% endif %}>Все жанры</option>
+		{% for genre in genres %}
+		<option value="{{ genre.get_absolute_url }}" {% if genre.pk == genre_selected %}selected{% endif %}>{{ genre.name }}</option>
+		{% endfor %}
+	</select>
+</div>
+
+<ul class="book-list">
+	{% for book in books %}
+		<li>
+			<div>
+				<p class="book-genre">Жанр: {{book.genre}}</p>
+				<p class="book-date">Дата: {{book.modified_date|date:"d-m-T H:i:s"}}</p>
+			</div>
+			
+			{% if book.cover %}
+			<p><img class="book-img" src="{{book.cover.url}}" alt=""></p>
+			{% endif %}
+			<h2>{{book.title}}</h2>
+			<p class="book-description">
+				{% autoescape on %}
+				{{book.description|linebreaks|truncatewords:50}}
+				{% endautoescape %}
+			</p>
+		<p class="book-link"><a href="{{ book.get_absolute_url }}">Подробнее</a></p>
+		</li>
+		{% empty %}
+		<li>Книг не найдено.</li>
+	{% endfor %}
+</ul>
+{% endblock %}
