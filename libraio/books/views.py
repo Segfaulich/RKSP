@@ -106,7 +106,7 @@ class BookSearchView(DataMixin, ListView):
         if query:
             return Book.objects.filter(Q(title__icontains=query) | Q(author__icontains=query))
         else:
-            return Book.objects.none()
+            return Book.objects.all()
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
