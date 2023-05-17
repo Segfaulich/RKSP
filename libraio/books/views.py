@@ -117,7 +117,6 @@ class BookSearchView(DataMixin, ListView):
 class RegisterUserView(DataMixin, CreateView):
     form_class = RegisterUserForm
     template_name = 'books/auth/register.html'
-    success_url = reverse_lazy('login')
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
