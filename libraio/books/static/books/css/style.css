@@ -88,6 +88,7 @@ main {
 }
 
 .pagination li {
+  display: flex;
   margin: 0 5px;
 }
 
