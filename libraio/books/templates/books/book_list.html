@@ -2,12 +2,12 @@
 
 {% block content %}
 <div class="action-menu">
-	<form method="GET" action="{% url 'search' %}">
-		<input type="text" name="query" placeholder="Введите запрос">
+	<form method="GET" action="{% url 'search' %}" id="search_form">
+		<input type="text" name="query" placeholder="Введите запрос" id="search_input">
 		<!-- <button type="submit">Найти</button> -->
-	</form>          
-	  
-	<select onchange="if (this.value) window.location.href=this.value">
+	</form>
+
+	<select onchange="this.value" id="genre_select">
 		<option value="{% url 'list' %}" {% if genre_selected == 0 %}selected{% endif %}>Все жанры</option>
 		{% for genre in genres %}
 		<option value="{{ genre.get_absolute_url }}" {% if genre.pk == genre_selected %}selected{% endif %}>{{ genre.name }}</option>
@@ -15,14 +15,23 @@
 	</select>
 </div>
 
-<ul class="book-list">
+<ul class="book-list" id="book-list">
 	{% for book in books %}
 		<li>
 			<div>
 				<p class="book-genre">Жанр: {{book.genre}}</p>
 				<p class="book-date">Дата: {{book.modified_date|date:"d-m-T H:i:s"}}</p>
 			</div>
-			
+
+			{% if user.is_authenticated and user.pk == book.user_id or user.is_superuser %}
+			<div class="crud">
+			  <form action="{% url 'book_delete' book.pk %}" method="post" id="delete_form">
+				{% csrf_token %}
+				<button class="crud-delete" type="submit">Удалить</button>
+			  </form>
+			</div>
+			{% endif %}
+
 			{% if book.cover %}
 			<p><img class="book-img" src="{{book.cover.url}}" alt=""></p>
 			{% endif %}
@@ -32,10 +41,15 @@
 				{{book.description|linebreaks|truncatewords:50}}
 				{% endautoescape %}
 			</p>
-		<p class="book-link"><a href="{{ book.get_absolute_url }}">Подробнее</a></p>
+		<p class="book-link"><a href="{{ book.get_absolute_url }}" class="menu-link">Подробнее</a></p>
 		</li>
 		{% empty %}
 		<li>Книг не найдено.</li>
 	{% endfor %}
 </ul>
+
+<script>
+    searchUrl = "{% url 'search' %}";
+</script>
+
 {% endblock %}

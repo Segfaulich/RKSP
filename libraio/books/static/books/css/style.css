@@ -255,6 +255,20 @@ textarea {
   max-height: 500px;
 }
 
+.form-select {
+  background-color: #333;
+  color: #fff;
+  border: none;
+  padding: 8px;
+  appearance: none;
+  padding-right: 20px;
+}
+
+.form-select option {
+  background-color: #333;
+  color: #fff;
+}
+
 .form-label {
   display: inline-block;
   width: 120px;
@@ -268,7 +282,21 @@ textarea {
   margin-top: 5px;
 }
 
-button[type="submit"] {
+.crud-delete {
+  background-color: #ca0000;
+  color: #FFFFFF;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  font-weight: bold;
+  text-decoration: none;
+  cursor: pointer;
+}
+.crud-delete:hover {
+  background-color: #000000;
+}
+
+.submit {
   background-color: #4CAF50;
   color: white;
   padding: 7px 16px;

@@ -15,6 +15,8 @@ class Book(models.Model):
 
     genre = models.ForeignKey('Genre', on_delete=models.PROTECT, verbose_name="Жанр")
 
+    user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='Пользователь')
+
     def __str__(self):
         return self.title
 

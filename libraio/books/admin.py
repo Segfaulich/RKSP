@@ -4,7 +4,7 @@ from .models import *
 
 
 class BookAdmin(admin.ModelAdmin):
-    list_display = ('id', 'title', 'publication_date', 'modified_date', 'cover')
+    list_display = ('id', 'title', 'user', 'publication_date', 'modified_date', 'cover')
     list_display_links = ('id', 'title')
     search_fields = ('title', 'description')
     list_filter = ('publication_date',)

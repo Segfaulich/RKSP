@@ -4,6 +4,7 @@ menu = [
     {'title': "Список книг", 'url_name': 'list'},
     {'title': "Добавить книгу", 'url_name': 'add_book'},
     {'title': "Удаление книги", 'url_name': 'delete_req'},
+    {'title': "Запросы на удаление", 'url_name': 'delete_list'},
 ]
 
 

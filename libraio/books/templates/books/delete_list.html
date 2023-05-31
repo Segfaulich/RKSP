@@ -1,0 +1,102 @@
+{% extends 'books/base.html' %}
+
+{% block content %}
+<h1 class="delete-requests-heading">Запросы на удаление книги</h1>
+  <div class="delete-requests">
+
+    {% for delete_request in delete_requests %}
+    <div class="delete-request">
+      <div class="delete-request-user">
+        <span class="delete-request-username">{{ delete_request.user.username }}</span>
+      </div>
+      <div class="delete-request-details">
+        <p class="delete-request-date">{{ delete_request.req_date|date:"F d, Y, H:i" }}</p>
+        <p class="delete-request-book">{{ delete_request.book.title }}</p>
+        <p class="delete-request-reason">{{ delete_request.reason }}</p>
+        {% if request.user.is_superuser %}
+        <div class="delete-request-actions">
+          <form action="{% url 'delete_req_reject' delete_request.pk %}" method="post" class="delete_req_form">
+            {% csrf_token %}
+            <button type="submit" class="delete-request-button">Удалить запрос</button>
+          </form>
+          <form action="{% url 'delete_req_approve' delete_request.pk %}" method="post" class="delete_req_form">
+            {% csrf_token %}
+            <button type="submit" class="delete-request-button">Одобрить запрос</button>
+          </form>
+        </div>
+        {% endif %}
+      </div>
+    </div>
+    {% empty %}
+    <div>Не найдено...</div>
+    {% endfor %}
+  </div>
+
+   <style>
+    /* Стили для обертки запросов на удаление */
+    .delete-requests {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    /* Стили для каждого запроса на удаление */
+    .delete-request {
+      display: flex;
+      margin-bottom: 20px;
+      border: 1px solid #ccc;
+      border-radius: 50px;
+      padding: 20px;
+    }
+
+    /* Стили для аватара пользователя */
+    .delete-request-user {
+      margin-right: 20px;
+    }
+
+    /* Стили для имени пользователя */
+    .delete-request-username {
+      font-size:19px;
+      font-weight: bold;
+    }
+
+    .delete-request-details {
+      margin-top: 30px;
+    }
+
+    /* Стили для даты запроса */
+    .delete-request-date {
+      color: #888;
+      margin-bottom: 5px;
+    }
+
+    /* Стили для названия книги */
+    .delete-request-book {
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+
+    /* Стили для причины удаления */
+    .delete-request-reason {
+      margin-bottom: 10px;
+    }
+
+    /* Стили для действий */
+    .delete-request-actions {
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    /* Дополнительные стили для заголовка */
+    .delete-requests-heading {
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+  </style>
+
+
+<script>
+    reqUrl = "{% url 'delete_list' %}";
+</script>
+
+{% endblock %}
